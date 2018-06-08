@@ -1,0 +1,17 @@
+{
+    "code": "NEW",
+    "name": "the New Country",
+    "continent": "South America",
+    "region": "Southern South America",
+    "surfacearea": 50000,
+    "indepyear": 2018,
+    "population": 1,
+    "lifeexpectancy": 50000000,
+    "gnp": 10000.00,
+    "gnpold": null,
+    "localname": "New/newestcountry",
+    "governmentform": "KING LEO",
+    "headofstate": "Leo Leao",
+    "capital": 1,
+    "code2": "AF"
+}

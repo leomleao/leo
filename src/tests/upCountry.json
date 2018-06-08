@@ -1,0 +1,17 @@
+{
+    "code": "NEW",
+    "name": "the New Newest Country",
+    "continent": "Europe",
+    "region": "Southern Europe",
+    "surfacearea": 50000,
+    "indepyear": 2018,
+    "population": 1,
+    "lifeexpectancy": 50000000,
+    "gnp": 10000.00,
+    "gnpold": null,
+    "localname": "New/newestcountry",
+    "governmentform": "KING LEO",
+    "headofstate": "Super Leo",
+    "capital": 1,
+    "code2": "AF"
+}
