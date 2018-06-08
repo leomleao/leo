@@ -1,8 +1,12 @@
-import { Body, Controller, Get, Post, Put, Param, Query, HttpException, HttpStatus, HttpCode } from '@nestjs/common';
+import { Body, Controller, Get, Post, Put, Param, Query, HttpCode, UseFilters, UsePipes, BadRequestException } from '@nestjs/common';
 import { CountriesService } from './countries.service';
-import { CountryDto } from './country.dto';
+import { CreateCountryDto, UpdateCountryDto } from './country.dto';
+import { HttpExceptionFilter } from '../common/http-exception.filter';
+import { ValidationPipe } from '../common/validation.pipe';
 
 @Controller('countries')
+@UseFilters(new HttpExceptionFilter())
+@UsePipes(new ValidationPipe())
 export class CountriesController {
   constructor(private readonly countriesService: CountriesService) { }
 
@@ -17,19 +21,19 @@ export class CountriesController {
 
   @Post()
   @HttpCode(201)
-  async create(@Body() createCountryDto: CountryDto) {
+  async create(@Body() createCountryDto: CreateCountryDto) {
     return await this.countriesService.create(createCountryDto);
   }
 
   @Put()
-  async update(@Body() updateCountryDto: CountryDto) {
+  async update(@Body() updateCountryDto: UpdateCountryDto) {
     const code = updateCountryDto.code;
     if (!code){
-      throw new HttpException('No country code given!', HttpStatus.BAD_REQUEST);
+      throw new BadRequestException('No country code given!');
     }
     const countryToUpdate = await this.countriesService.findOne(code);
     if (!countryToUpdate) {
-      throw new HttpException('Country doesnt exist!', HttpStatus.BAD_REQUEST);
+      throw new BadRequestException('Country not found!');
     }
     return await this.countriesService.update(updateCountryDto);
   }

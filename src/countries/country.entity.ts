@@ -16,7 +16,7 @@ export class Country {
   region: string;
 
   @Column()
-  surfacearea: string;
+  surfacearea: number;
 
   @Column({
     nullable: true,
