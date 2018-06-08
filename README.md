@@ -31,9 +31,12 @@ Tests can be performed by simply running:
 $ npm test
 ```
 
+A deployed working version can be found here:
+
+[Heroku](https://ancient-brook-19580.herokuapp.com/api/countries)
 
 
-I'm not sure rather speed was a very important thing here, but anyway, you guys will be able to judge that on the following two links:
+I'm not sure rather coding speed was a very important thing here, but anyway, you guys will be able to judge that on the following two links:
 
 [Time spent during lunch break](https://wakatime.com/@270fe5d3-5146-4d64-9dbc-6dc4087404c7/projects/mdsitejnjb?start=2018-05-25&end=2018-06-07)
 
@@ -41,4 +44,4 @@ and
 
 [Time spent at home](https://wakatime.com/@954e10d9-c542-49bd-ba01-6b92a65eef5d/projects/zbzcsuexgk?start=2018-05-25&end=2018-06-07)
 
-Note: It's split in two, because I separated my account from home and office.
+Note: It's split in two, because I separated my account from home and office. Btw if you guys don't know, [WAKATIME](https://wakatime.com) is very fun tool. 
