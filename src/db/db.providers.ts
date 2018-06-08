@@ -1,7 +1,8 @@
 import { createConnection } from 'typeorm';
-
 import { Country } from '../countries/country.entity';
-import { CountryLang } from '../countries/countrylang.entity';
+import { Language } from '../languages/language.entity';
+import * as dotenv from 'dotenv';
+import * as path from 'path';
 
 export const dbProvider =
   {
@@ -11,7 +12,7 @@ export const dbProvider =
       url: process.env.DATABASE_URL,
       entities: [
         Country,
-        CountryLang,
+        Language,
       ],
       logging: true, // #TODO remove this before PROD ready
     }),
