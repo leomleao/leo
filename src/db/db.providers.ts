@@ -1,8 +1,6 @@
 import { createConnection } from 'typeorm';
 import { Country } from '../countries/country.entity';
 import { Language } from '../languages/language.entity';
-import * as dotenv from 'dotenv';
-import * as path from 'path';
 
 export const dbProvider =
   {

@@ -4,18 +4,17 @@
   "description": "Simple REST API for querying countries",
   "main": "/dist/index.js",
   "scripts": {
+    "postbuild": "tsc",
     "format": "prettier --write \"src/**/*.ts\"",
-    "build": "node sample/index",
+    "setdb": "node sample/index",
     "start": "ts-node -r tsconfig-paths/register src/server.ts",
     "start:dev": "nodemon",
     "start:debug": "nodemon --config nodemon-debug.json",
-    "prestart:prod": "rimraf dist && tsc",
-    "start:prod": "node dist/main.js",
-    "start:hmr": "node dist/server",
-    "lint": "tslint -p tsconfig.json -c tslint.json",
+    "start:prod": "node dist/server.js",
+    "build": "tslint -p tsconfig.json -c tslint.json",
     "test": "jest",
     "clean": "shx rm -rf dist/ node_modules/",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run setdb"
   },
   "dependencies": {
     "@nestjs/common": "^5.0.0",
@@ -28,8 +27,8 @@
     "reflect-metadata": "^0.1.12",
     "rxjs": "^6.0.0",
     "typeorm": "^0.2.7",
-    "typescript": "^2.8.0",
-    "dotenv": "^5.0.1",    
+    "typescript": "^2.9.1",
+    "dotenv": "^5.0.1",
     "body-parser": "^1.18.3"
   },
   "devDependencies": {
@@ -40,7 +39,6 @@
     "jest": "^21.2.1",
     "nodemon": "^1.17.5",
     "prettier": "^1.11.1",
-    "rimraf": "^2.6.2",
     "supertest": "^3.0.0",
     "ts-jest": "^21.2.4",
     "ts-loader": "^4.1.0",
