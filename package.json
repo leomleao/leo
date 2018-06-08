@@ -14,7 +14,7 @@
     "build": "tslint -p tsconfig.json -c tslint.json",
     "test": "jest",
     "clean": "shx rm -rf dist/ node_modules/",
-    "heroku-postbuild": "npm run setdb"
+    "heroku-postbuild": "npm run setdb && tsc"
   },
   "dependencies": {
     "@nestjs/common": "^5.0.0",
