@@ -17,6 +17,8 @@ $ git clone https://github.com/leomleao/leo
 # Install dependencies
 $ npm install
 
+# If on dev, create a .env in the root folder with your DATABASE_URL in the following format: postgres://USER:PASS@HOST:PORT/DB
+
 # Load data to DB
 $ npm run setdb
 
@@ -33,7 +35,7 @@ $ npm test
 
 A deployed working version can be found here:
 
-[Heroku](https://ancient-brook-19580.herokuapp.com/api/countries)
+[Heroku](http://www.langs.ml/api/countries)
 
 
 I'm not sure rather coding speed was a very important thing here, but anyway, you guys will be able to judge that on the following two links:
