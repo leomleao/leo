@@ -12,6 +12,5 @@ export const dbProvider =
         Country,
         Language,
       ],
-      logging: true, // #TODO remove this before PROD ready
     }),
   };

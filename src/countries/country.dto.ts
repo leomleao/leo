@@ -16,6 +16,7 @@ export class CreateCountryDto {
   @IsOptional() @IsString() readonly headofstate: string;
   @IsOptional() @IsInt() readonly capital: number;
   @IsString() @Length(2, 2) readonly code2: string;
+  @IsOptional() readonly languages;
 }
 
 export class UpdateCountryDto {
@@ -34,4 +35,5 @@ export class UpdateCountryDto {
   @IsOptional() @IsString() readonly headofstate: string;
   @IsOptional() @IsInt() readonly capital: number;
   @IsOptional() @IsString() @Length(2, 2) readonly code2: string;
+  @IsOptional() readonly languages;
 }

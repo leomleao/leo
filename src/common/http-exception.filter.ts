@@ -7,7 +7,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse();
     const request = ctx.getRequest();
-    let message = exception.message;
+    const message = exception.message;
     message.timestamp = new Date().toISOString();
     message.path = request.url;
 
