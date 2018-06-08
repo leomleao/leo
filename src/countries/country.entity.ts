@@ -1,9 +1,10 @@
-import { Column, Entity, PrimaryColumn } from 'typeorm';
+import { Column, Entity, PrimaryColumn, OneToMany } from 'typeorm';
+import { Language } from '../languages/language.entity';
 
-@Entity()
+@Entity('country')
 export class Country {
   @PrimaryColumn()
-  code: character(3);
+  code: string;
 
   @Column()
   name: string;
@@ -20,25 +21,25 @@ export class Country {
   @Column({
     nullable: true,
   })
-  indepyear: smallint;
+  indepyear: number;
 
   @Column()
-  population: integer;
+  population: number;
 
   @Column({
     nullable: true,
   })
-  lifeexpectancy: real;
+  lifeexpectancy: number;
 
   @Column({
     nullable: true,
   })
-  gnp: numeric(10,2);
+  gnp: number;
 
   @Column({
     nullable: true,
   })
-  gnpold: numeric(10,2);
+  gnpold: number;
 
   @Column()
   localname: string;
@@ -54,9 +55,11 @@ export class Country {
   @Column({
     nullable: true,
   })
-  capital: integer;
+  capital: number;
 
   @Column()
-  code2: character(2);
+  code2: string;
 
+  @OneToMany(type => Language, language => language.country)
+  languages: Language[];
 }

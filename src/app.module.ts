@@ -1,4 +1,4 @@
-import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 
 import { CountriesModule } from './countries/countries.module';
 
@@ -6,10 +6,4 @@ import { CountriesModule } from './countries/countries.module';
     modules: [CountriesModule],
 })
 
-export class ApplicationModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(LoggerMiddleware)
-      .forRoutes('/api/');
-  }
-}
+export class AppModule {}

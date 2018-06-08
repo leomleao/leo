@@ -2,7 +2,6 @@ import { Inject, Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 
 import { Country } from './country.entity';
-import { CountryLang } from './countrylang.entity';
 
 @Injectable()
 export class CountriesService {
@@ -16,13 +15,23 @@ export class CountriesService {
     }
   }
 
-  //#TODO Still need to work with this query.
+  // #TODO Still need to work with this query.
   async findMany(conds: object) {
     try {
-      return await this.countryRepository.createQueryBuilder("country")
-                  .leftJoinAndSelect("country.countrylang", "countrylang")
-                  .where("country.countrycode = :language", conds)
-                  .getOne();
+      return await this.countryRepository.createQueryBuilder('Country')
+                  .leftJoinAndSelect('Country.languages', 'Language')
+                  .where('Language.language = :language', conds )
+                  .andWhere('Language.isofficial = :isofficial', { isofficial: true} )
+                  // Not speficied if should include only countries where the language is official, normally one would conclude that yes.
+                  .getMany();
+    } catch (err) {
+      return err;
+    }
+  }
+
+  async findOne(countryCode: string) {
+    try {
+      return await this.countryRepository.findOne({ where: { code: countryCode }});
     } catch (err) {
       return err;
     }
@@ -36,11 +45,11 @@ export class CountriesService {
     }
   }
 
-  async save(country: Country) {
+  async update(country: Country) {
     try {
       return await this.countryRepository.save(country);
     } catch (err) {
       return err;
     }
-  }  
+  }
 }

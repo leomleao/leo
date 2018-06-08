@@ -1,43 +1,37 @@
-import { Body, Controller, Get, Post, Put, Param, Query, HttpException, HttpException } from '@nestjs/common';
+import { Body, Controller, Get, Post, Put, Param, Query, HttpException, HttpStatus, HttpCode } from '@nestjs/common';
 import { CountriesService } from './countries.service';
+import { CountryDto } from './country.dto';
 
-@Controller()
+@Controller('countries')
 export class CountriesController {
-
   constructor(private readonly countriesService: CountriesService) { }
 
-  @Get(':lang')
-  async find(@Query() lang : string) {
-  	 if (lang) {
-     return await this.countriesService.findMany({language: lang});
-  	 } else {
+  @Get('')
+  async findAll(@Query() query) {
+     if (query && query.hasOwnProperty('lang')) {
+     return await this.countriesService.findMany({language: query.lang});
+     } else {
      return await this.countriesService.findAll();
   	 }
   }
 
-  @Put()
-  async reserve(@Body() body) {
-    const tool = await this.countriesService.findOne(body.toolId);
-    if (!tool.in_use || !tool.since) {
-      tool.in_use = body.employeeId;
-      tool.since = new Date();
-
-      return await this.countriesService.save(tool);
-
-    } else {
-
-      throw new HttpException('Tool already in Use!', HttpStatus.BAD_REQUEST);
-
-    }
+  @Post()
+  @HttpCode(201)
+  async create(@Body() createCountryDto: CountryDto) {
+    return await this.countriesService.create(createCountryDto);
   }
 
-  @Post()
-  async create( @Body() createCompanyDto: CreateCompanyDto) {
-    // const newCompany = Object.assign({}, createCompanyDto, {
-    //   created_at: new Date(),
-    //   password: null,
-    // });
-    return this.countriesService.create(newCompany);
+  @Put()
+  async update(@Body() updateCountryDto: CountryDto) {
+    const code = updateCountryDto.code;
+    if (!code){
+      throw new HttpException('No country code given!', HttpStatus.BAD_REQUEST);
+    }
+    const countryToUpdate = await this.countriesService.findOne(code);
+    if (!countryToUpdate) {
+      throw new HttpException('Country doesnt exist!', HttpStatus.BAD_REQUEST);
+    }
+    return await this.countriesService.update(updateCountryDto);
   }
 
 }

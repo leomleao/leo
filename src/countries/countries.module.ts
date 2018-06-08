@@ -1,12 +1,16 @@
 import { Module } from '@nestjs/common';
 import { CountriesController } from './countries.controller';
-import { CountriesService } from './country.service';
+import { CountriesService } from './countries.service';
+import { countryProviders } from './country.providers';
 import { DBModule } from '../db/db.module';
 
 @Module({
   modules: [DBModule],
-  imports: [],
   controllers: [CountriesController],
-  providers: [CountriesService],
+  providers: [
+      ...countryProviders,
+      CountriesService,
+  ],
+  exports: [CountriesService],
 })
 export class CountriesModule {}
